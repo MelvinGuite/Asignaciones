@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup Form</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form login">
+            <h2>Login</h2>
+            <form method="get" action="">
+                <div class="inputBox">
+                    <span class="fas fa-envelope"></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="inputBox">
+                    <span class="fas fa-lock"></span>
+                    <input type="password" maxlength="26" required>
+                    <label>Password</label>
+                </div>
+                <a href="#" class="link">Forgot Password?</a>
+                <button class="btn">Login</button>
+                <span class="link">Don't have an account? <a href="#">Signup</a></span>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
