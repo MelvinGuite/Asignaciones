@@ -71,7 +71,7 @@
         .card {
             width: calc(33.33% - 20px);
             background: linear-gradient(to bottom right, #00bcd4, #007c91); /* Gradiente suave */
-            color: #fff; /* Letras blancas */
+            color: #007c91; /* Letras negras */
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
@@ -111,7 +111,7 @@
         /* Estilo del menú lateral */
         .sidebar {
             width: 250px;
-            background: rgba(51, 51, 51, 0.4); /* Cambia el color de fondo del menú lateral a uno con transparencia */
+            background: rgba(95, 8, 11, 0.4); /* Cambia el color de fondo del menú lateral a uno con transparencia */
             color: #fff;
             padding: 20px;
         }
@@ -119,7 +119,7 @@
         /* Estilos de las tarjetas adaptados */
         .card {
             width: calc(33.33% - 20px);
-            background: rgba(0, 188, 212, 0.6); /* Cambia el color de fondo de las tarjetas a uno con transparencia */
+            background: rgba(95, 8, 11, 0.6); /* Cambia el color de fondo de las tarjetas a uno con transparencia */
             color: #fff;
             border-radius: 5px;
             padding: 20px;
