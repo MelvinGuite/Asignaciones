@@ -148,7 +148,7 @@
             width: 100%;
             height: 100%;
             z-index: -1; /* Coloca la capa detrás del contenido */
-            opacity: 0.7; /* Ajusta la opacidad según tu preferencia */
+            opacity: 1; /* Ajusta la opacidad según tu preferencia */
         }
     </style>
 
