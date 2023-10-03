@@ -151,9 +151,6 @@
             opacity: 1; /* Ajusta la opacidad según tu preferencia */
         }
     </style>
-
-
-
 </head>
 <body>
     <!-- Menú Lateral -->
