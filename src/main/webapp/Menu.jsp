@@ -151,6 +151,8 @@
             opacity: 10; /* Ajusta la opacidad según tu preferencia */
         }
     </style>
+    
+    <script src="https://kit.fontawesome.com/be42ec504e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Menú Lateral -->
@@ -159,13 +161,13 @@
         <ul>
           <li>
               <a href="#">
-                  <img src="ayuda.png">
+                  <i class="fa-solid fa-user fa-beat fa-xl" style="color: #a6b7d3;"></i>
                   Mi perfil
               </a>
           </li>
             <li>
                 <a href="#">
-                    <img src="configuracion.png" alt="Configuración">
+                    <i class="fa-solid fa-gear"></i>
                     Configuración
                 </a>
             </li>
@@ -188,16 +190,14 @@
     <div class="content">
         <!-- Tarjeta 1: Administrar Estudiantes -->
         <div class="card" onclick="window.location.href='administrar_estudiantes.html';">
-            <img src="estudiantes.png" alt="Estudiantes">
-            <h2>Administrar Estudiantes</h2>
-            <p>Gestione la información de los estudiantes.</p>
+<i class="fa-solid fa-money-bill-1-wave fa-beat-fade fa-2xl" style="color: #d3dbe9;"></i>            <h2>Pago Mensualidad</h2>
+            <p>Paga aqui tu colegiatura</p>
         </div>
 
         <!-- Tarjeta 2: Administrar Cursos -->
         <div class="card" onclick="window.location.href='administrar_cursos.html';">
-            <img src="cursos.png" alt="Cursos">
-            <h2>Administrar Cursos</h2>
-            <p>Gestione los cursos disponibles.</p>
+<i class="fa-regular fa-address-book fa-beat fa-2xl" style="color: #d8dce4;"></i>            <h2>Administrar Cursos</h2>
+            <p>Ver mis cursos</p>
         </div>
 
         <!-- Tarjeta 3: Asignar Cursos -->
@@ -209,19 +209,18 @@
 
         <!-- Tarjeta 4: Informes y Estadísticas -->
         <div class="card" onclick="window.location.href='informes_estadisticas.html';">
-            <img src="informes.png" alt="Informes y Estadísticas">
-            <h2>Informes y Estadísticas</h2>
-            <p>Acceda a informes y estadísticas.</p>
+<i class="fa-solid fa-face-frown fa-bounce fa-2xl" style="color: #aec0e0;"></i>
+            <h2>Ver notas</h2>
+            <p>Puedes ver tus notas y Pensum</p>
         </div>
 
-        <!-- Tarjeta 5: Configuración -->
-        <div class="card" onclick="window.location.href='configuracion.html';">
-            <img src="configuracion.png" alt="Configuración">
-            <h2>Configuración</h2>
-            <p>Personalice la configuración del sistema.</p>
-        </div>
+		<!-- Tarjeta 5: Configuración -->
+		<div class="card" onclick="window.location.href='configuracion.html';">
+<i class="fa-solid fa-gear fa-shake fa-xl" style="color: #dce0ea;"></i>
+			<p>Personalice la configuración del sistema.</p>
+		</div>
 
-        <!-- Tarjeta 6: Ayuda y Soporte -->
+		<!-- Tarjeta 6: Ayuda y Soporte -->
         <div class="card" onclick="window.location.href='ayuda_soporte.html';">
             <img src="ayuda.png" alt="Ayuda y Soporte">
             <h2>Ayuda y Soporte</h2>
