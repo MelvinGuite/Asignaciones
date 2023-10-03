@@ -15,7 +15,12 @@
             padding: 0;
             display: flex;
             background-color: #f5f5f5; /* Fondo suave */
+            background-image: url('fondo.jpg'); /* URL de la imagen de fondo */
+            background-size: cover; /* Ajustar la imagen de fondo para cubrir todo el elemento body */
+            background-position: center; /* Centrar la imagen de fondo */
+            background-repeat: no-repeat; /* Evitar la repetición de la imagen de fondo */
         }
+
 
         /* Estilo del menú lateral */
         .sidebar {
@@ -93,11 +98,52 @@
             height: 80px;
             margin-bottom: 10px;
         }
+        
+        .sidebar img {
+    width: 250px; /* Ajusta el ancho de la imagen */
+    height: auto; /* Autoajusta la altura para mantener la proporción */
+}
+        
     </style>
+    <!-- Estilos de las tarjetas adaptados -->
+    <!-- Estilos generales -->
+    <style>
+        /* Estilo del menú lateral */
+        .sidebar {
+            width: 250px;
+            background: rgba(51, 51, 51, 0.4); /* Cambia el color de fondo del menú lateral a uno con transparencia */
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Estilos de las tarjetas adaptados */
+        .card {
+            width: calc(33.33% - 20px);
+            background: rgba(0, 188, 212, 0.6); /* Cambia el color de fondo de las tarjetas a uno con transparencia */
+            color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Efecto de flotar */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+
+
 </head>
 <body>
     <!-- Menú Lateral -->
     <div class="sidebar">
+        <img src="logo.jpg" alt="Logo de la empresa"> <!-- Agrega una imagen como logo -->
         <ul>
           <li>
               <a href="#">
