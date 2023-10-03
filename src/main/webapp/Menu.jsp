@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <style>
         /* Estilos generales */
-        body {
+       body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
+            position: relative; /* Necesario para el posicionamiento absoluto de ::before */
             background-color: #f5f5f5; /* Fondo suave */
             background-image: url('fondo.jpg'); /* URL de la imagen de fondo */
             background-size: cover; /* Ajustar la imagen de fondo para cubrir todo el elemento body */
@@ -119,7 +120,7 @@
         /* Estilos de las tarjetas adaptados */
         .card {
             width: calc(33.33% - 20px);
-            background: rgba(95, 8, 11, 0.6); /* Cambia el color de fondo de las tarjetas a uno con transparencia */
+            background: rgba(95, 8, 11, 0.4); /* Cambia el color de fondo de las tarjetas a uno con transparencia */
             color: #fff;
             border-radius: 5px;
             padding: 20px;
@@ -134,6 +135,20 @@
         .card:hover {
             transform: translateY(-5px); /* Efecto de flotar */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+                /* Capa de desenfoque */
+        body::before {
+            content: "";
+            background-image: url('fondo.jpg'); /* Mismo fondo que el cuerpo */
+            filter: blur(10px); /* Aplica el efecto de desenfoque */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Coloca la capa detrás del contenido */
+            opacity: 0.7; /* Ajusta la opacidad según tu preferencia */
         }
     </style>
 
