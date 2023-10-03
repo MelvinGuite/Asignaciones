@@ -141,14 +141,14 @@
         body::before {
             content: "";
             background-image: url('fondo.jpg'); /* Mismo fondo que el cuerpo */
-            filter: blur(10px); /* Aplica el efecto de desenfoque */
+            filter: blur(100px); /* Aplica el efecto de desenfoque */
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1; /* Coloca la capa detrás del contenido */
-            opacity: 1; /* Ajusta la opacidad según tu preferencia */
+            opacity: 10; /* Ajusta la opacidad según tu preferencia */
         }
     </style>
 </head>
