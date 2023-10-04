@@ -42,7 +42,7 @@ body{
     border: none;
     outline: none;
     font-size: 15px;
-    color: #002512;
+    color: rgb(128, 255, 255);
     font-weight: 600;
     padding: 0 5px;
 }
@@ -58,7 +58,7 @@ body{
     top: 50%;left: 3px;
     transform: translateY(-50%);
     font-size: 1rem;
-    color: #002512;
+    color:rgba(255, 255, 255, 0.8);
     font-weight: 600;
     pointer-events: none;
     transition: .5s;
