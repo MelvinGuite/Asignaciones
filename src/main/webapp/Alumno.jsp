@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Formulario de prueba</title>
+<title>Formulario Estudiante</title>
 </head>
 <body>
 <h1>Registro de Estudiante</h1>

@@ -10,7 +10,7 @@
 <h1>Registro de Pago</h1>
 
 <form action="" method="get">
-<label>Carnet_Alumno</label>
+<label>Carnet Alumno</label>
 <input name="carnet" id="carnet" type="number" required="required">
 <br><br>
 <button type="submit" name="registro" id="registro">Registrar</button>
