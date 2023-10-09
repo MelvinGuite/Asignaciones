@@ -56,7 +56,7 @@ public class ServicioCorreo {
 	                + "Te deseamos todo el éxito en tu viaje universitario y estamos emocionados por lo que el futuro tiene reservado para ti en la Universidad Mariano Gálvez de Guatemala. ¡Bienvenido a nuestra comunidad académica!\n\n"
 	                + "Atentamente,\n"
 	                + "Melvin Güité\n"
-	                + "Ing. en Sistemas\n"
+	                + "Desarrollo de Software\n"
 	                + "Universidad Mariano Gálvez de Guatemala\n";
 
 	        message.setText(mensaje);
