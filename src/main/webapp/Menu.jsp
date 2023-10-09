@@ -157,6 +157,17 @@ body::before {
 }
 </style>
 
+    <link rel="stylesheet" href="loader.css">
+    <script src="carga.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%-- Recuperar el valor de "pagina" de la sesión --%>
+    <% HttpSession sssion = request.getSession(false); // Obtener la sesión sin crear una nueva %>
+    <% String usuario = null; %>
+    <% if (sssion != null) { %>
+        <% usuario = (String) sssion.getAttribute("inicio"); %>
+    <% } %>
+
 <script src="https://kit.fontawesome.com/be42ec504e.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -166,6 +177,7 @@ body::before {
 		<img src="logo.jpg" alt="Logo de la empresa">
 		<!-- Agrega una imagen como logo -->
 		<ul>
+		<li>usuario en sesion: <%=usuario %> </li>
 			<li><a href="#"> <i class="fa-solid fa-user fa-beat fa-xl"
 					style="color: #a6b7d3;"></i> Mi perfil
 			</a></li>
@@ -179,8 +191,13 @@ body::before {
 		</ul>
 	</div>
 
+
+    
+    
 	<!-- Contenido de las tarjetas -->
 	<div class="content">
+
+	
 		<!-- Tarjeta 1: Administrar Estudiantes -->
 		<div class="card"
 			onclick="window.location.href='administrar_estudiantes.html';">

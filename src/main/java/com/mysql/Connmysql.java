@@ -44,16 +44,33 @@ public class Connmysql {
 	
 	//Reigstra alumno y devuelve su carnet 
 	public ResultSet RegistraAlumno (ArrayList<String> datos ) throws SQLException{		
-		CallableStatement cl = conexion.prepareCall(" {  CALL RegistraAlumno(?, ?, ?, ?) }");
+		CallableStatement cl = conexion.prepareCall(" {  CALL RegistraAlumno(?, ?, ?, ?, ?) }");
 		cl.setInt(1, Integer.parseInt(datos.get(0)));
 		cl.setString(2, datos.get(1));
 		cl.setString(3, datos.get(2));
 		cl.setInt(4, Integer.parseInt(datos.get(3)));
+		cl.setString(5, datos.get(4));
 		cl.execute();
 		
 		String consulta = "SELECT carnet_alumno from alumno a where identificacion = ? ; " ;
 		PreparedStatement ps = conexion.prepareStatement(consulta);
 		ps.setInt(1, Integer.parseInt(datos.get(0)));
+		return ps.executeQuery();
+	}
+	
+	//Encritado
+	public void Credencial (String pass, String carnet) throws SQLException {
+		CallableStatement cl = conexion.prepareCall("{ call CreaCredencial (?, ? ) }");
+		cl.setString(1, pass);
+		cl.setString(2, carnet);
+		cl.execute();
+	}
+	
+	//Verificacion 
+	public ResultSet Verificar (ArrayList<String>  arrDato) throws SQLException {
+		String consulta = "select pass from credencial WHERE carnet_alumno = ? ;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, arrDato.get(0));
 		return ps.executeQuery();
 	}
 }

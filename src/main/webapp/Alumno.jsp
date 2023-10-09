@@ -117,7 +117,7 @@ body {
 <h1 style="color: white;">Registro de Estudiante</h1> <!-- Cambia el color del título a blanco -->
 <h1>${existe}</h1>
 <div class="form-card">
-  <form action="RegistraAlumno" method="get">
+  <form action="RegistraAlumno" method="post">
     <label>Identificacion</label>
     <input name="identificacion" id="identificacion" type="number" required="required" placeholder="Ingrese todos los digitos de su DPI">
     <br><br>
@@ -130,6 +130,9 @@ body {
     <label>telefono</label>
     <input name="telefono" id="telefono" type="number" required="required">
     <br><br>
+    <label>Correo Electronico</label>
+    <input name="email" id="email" type="email" required="required">
+    <br><br>
 
     <button type="submit" name="registro" id="registro">Registrar</button>
     <button type="button" name="editar" id="editar">Editar</button>
@@ -138,6 +141,6 @@ body {
 <br><br>
 <br><br>
 <h1>${exito}</h1>
-<a href="index.jsp" style="color: white;">Regresar a la página principal</a>
+<a href="Menu.jsp" style="color: white;">Regresar a la página principal</a>
 </body>
 </html>

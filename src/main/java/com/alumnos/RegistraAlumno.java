@@ -5,7 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+import com.emailservice.ServicioCorreo;
+import com.encriptado.Procesamiento;
 import com.mysql.Connmysql;
 
 import jakarta.servlet.ServletException;
@@ -29,7 +30,7 @@ public class RegistraAlumno extends HttpServlet {
 			arrAlumno.add(request.getParameter("nombre").toUpperCase());
 			arrAlumno.add(request.getParameter("apellido").toUpperCase());
 			arrAlumno.add(request.getParameter("telefono"));
-			
+			arrAlumno.add(request.getParameter("email"));
 			for(String st : arrAlumno) {
 				System.out.println(st);
 			}
@@ -39,9 +40,16 @@ public class RegistraAlumno extends HttpServlet {
 				ResultSet rsCarnet = conn.RegistraAlumno(arrAlumno);
 				while(rsCarnet.next()) {
 				 carnet = rsCarnet.getString("carnet_alumno");
-				}
+				}	
+				Procesamiento encriptar = new Procesamiento();
+				String hash = encriptar.Encriptar(carnet);
+				System.out.println(hash);
+				conn.Credencial(hash, carnet);
 				conn.cerrarConexion();
-				request.setAttribute("exito", "Alumno registrado con exito, su carnet es: " + carnet);
+				ServicioCorreo envio = new ServicioCorreo();
+				envio.EnviaCorreo(arrAlumno.get(4),arrAlumno.get(1) ,arrAlumno.get(2), carnet );
+				request.setAttribute("exito", "Alumno registrado con exito \n\n" + 
+				"Se ha enviado correo de confirmacion");
 				System.out.println("Nuevo alumno registrado");
 			} catch (SQLException e) {
 				if(e.getSQLState().equals("45000")) {
