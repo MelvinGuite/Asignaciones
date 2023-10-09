@@ -111,15 +111,15 @@ body {
 	color: black;
 }
 
-</style>
+</style> 
 </head>
 <body>
 <h1 style="color: white;">Registro de Estudiante</h1> <!-- Cambia el color del título a blanco -->
-
+<h1>${existe}</h1>
 <div class="form-card">
   <form action="RegistraAlumno" method="get">
     <label>Identificacion</label>
-    <input name="identificacion" id="identificacion" type="number" required="required">
+    <input name="identificacion" id="identificacion" type="number" required="required" placeholder="Ingrese todos los digitos de su DPI">
     <br><br>
     <label>Nombre:</label>
     <input name="nombre" id="nombre" required="required">
@@ -130,16 +130,14 @@ body {
     <label>telefono</label>
     <input name="telefono" id="telefono" type="number" required="required">
     <br><br>
-    <label>credito</label>
-    <input name="credito" id="credito" type="number" required="required">
-    <br><br>
+
     <button type="submit" name="registro" id="registro">Registrar</button>
     <button type="button" name="editar" id="editar">Editar</button>
   </form>
 </div>
-
 <br><br>
 <br><br>
-<a href="index.jsp">Regresar a la página principal</a>
+<h1>${exito}</h1>
+<a href="index.jsp" style="color: white;">Regresar a la página principal</a>
 </body>
 </html>

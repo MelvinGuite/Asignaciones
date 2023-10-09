@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +147,6 @@ h1 {
     <button type="button" name="editar" id="editar">Editar</button>
   </form>
 </div>
-
 <br><br>
 <br><br>
 <a href="index.jsp" style="color: white">Regresar a la página principal</a>

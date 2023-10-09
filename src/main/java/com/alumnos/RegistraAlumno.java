@@ -1,7 +1,12 @@
 package com.alumnos;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+
+import com.mysql.Connmysql;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,20 +23,36 @@ public class RegistraAlumno extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> arrDatos = new ArrayList<String>();
-		
+		ArrayList<String> arrAlumno = new ArrayList<String>();
 		if(request.getParameter("registro") != null ) {
+			arrAlumno.add(request.getParameter("identificacion"));
+			arrAlumno.add(request.getParameter("nombre").toUpperCase());
+			arrAlumno.add(request.getParameter("apellido").toUpperCase());
+			arrAlumno.add(request.getParameter("telefono"));
 			
-			arrDatos.add(request.getParameter("nombre"));
-			arrDatos.add(request.getParameter("identificacion"));
-			arrDatos.add(request.getParameter("correo"));
-
-			for(String st : arrDatos ) {
+			for(String st : arrAlumno) {
 				System.out.println(st);
 			}
+			try {
+				String carnet = null;
+				Connmysql conn = new Connmysql();
+				ResultSet rsCarnet = conn.RegistraAlumno(arrAlumno);
+				while(rsCarnet.next()) {
+				 carnet = rsCarnet.getString("carnet_alumno");
+				}
+				conn.cerrarConexion();
+				request.setAttribute("exito", "Alumno registrado con exito, su carnet es: " + carnet);
+				System.out.println("Nuevo alumno registrado");
+			} catch (SQLException e) {
+				if(e.getSQLState().equals("45000")) {
+					request.setAttribute("existe", "Ya existe un alumno con el numero de identificacion proporcionado");
+				} else {
+					e.printStackTrace();
+				}
+			}
+			
 		}
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("Alumno.jsp").forward(request, response);
 	}
 
 

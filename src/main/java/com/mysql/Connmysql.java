@@ -1,11 +1,17 @@
 package com.mysql;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.oracle.wls.shaded.org.apache.regexp.recompile;
 
 public class Connmysql {
-	private String url = "jdbc:mysql://database-1.clrghkrtdl1q.us-east-2.rds.amazonaws.com:3306/prueba";
+	private String url = "jdbc:mysql://database-1.clrghkrtdl1q.us-east-2.rds.amazonaws.com:3306/ProyectoQA";
 	private String usuario = "admin";
 	private String password = "1829372MG";
 	private Connection conexion = null;
@@ -34,4 +40,49 @@ public class Connmysql {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	//Reigstra alumno y devuelve su carnet 
+	public ResultSet RegistraAlumno (ArrayList<String> datos ) throws SQLException{		
+		CallableStatement cl = conexion.prepareCall(" {  CALL RegistraAlumno(?, ?, ?, ?) }");
+		cl.setInt(1, Integer.parseInt(datos.get(0)));
+		cl.setString(2, datos.get(1));
+		cl.setString(3, datos.get(2));
+		cl.setInt(4, Integer.parseInt(datos.get(3)));
+		cl.execute();
+		
+		String consulta = "SELECT carnet_alumno from alumno a where identificacion = ? ; " ;
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setInt(1, Integer.parseInt(datos.get(0)));
+		return ps.executeQuery();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
