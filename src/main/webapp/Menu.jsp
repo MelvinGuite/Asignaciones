@@ -155,6 +155,16 @@ body::before {
 	z-index: -1; /* Coloca la capa detrás del contenido */
 	opacity: 10; /* Ajusta la opacidad según tu preferencia */
 }
+
+/* Estilo del botón */
+.button-transparent {
+  background-color: transparent; /* Fondo transparente */
+  color: #ffffff; /* Color de texto */
+  border: 1px solid #ffffff; /* Borde blanco (opcional) */
+  padding: 10px 20px; /* Espaciado interno del botón */
+  cursor: pointer; /* Cambiar el cursor al pasar el ratón por encima (opcional) */
+}
+
 </style>
 
     <link rel="stylesheet" href="loader.css">
@@ -167,6 +177,12 @@ body::before {
     <% if (sssion != null) { %>
         <% usuario = (String) sssion.getAttribute("inicio"); %>
     <% } %>
+    
+    <%
+    if (usuario == null) {
+    	response.sendRedirect("index.jsp");
+    }
+    %>
 
 <script src="https://kit.fontawesome.com/be42ec504e.js"
 	crossorigin="anonymous"></script>
@@ -174,30 +190,24 @@ body::before {
 <body>
 	<!-- Menú Lateral -->
 	<div class="sidebar">
-		<img src="logo.jpg" alt="Logo de la empresa">
+		<img src="logo.jpg" alt="UMG">
 		<!-- Agrega una imagen como logo -->
 		<ul>
-		<li>usuario en sesion: <%=usuario %> </li>
-			<li><a href="#"> <i class="fa-solid fa-user fa-beat fa-xl"
-					style="color: #a6b7d3;"></i> Mi perfil
-			</a></li>
-			<li><a href="#"> <i class="fa-solid fa-gear"></i>
-					Configuración
-			</a></li>
-			<li><a href="#"> <img src="ayuda.png"> Ayuda y Soporte
-			</a></li>
-			<li><a href="#"> <img src="ayuda.png"> Cerrar Sesion
-			</a></li>
+		<li><%=usuario %> </li>
+<li><a href="MiPerfil.jsp?usuario=<%=usuario%>"> <i class="fa-solid fa-user fa-beat fa-xl" style="color: #a6b7d3;"></i> Mi perfil</a></li>
+
+			
+			<li>
+			<form action="Logout" method="post">
+			<button type="submit" class="button-transparent" > <i class="fa-solid fa-right-to-bracket fa-2xl" style="color: #fafcff;"></i>    Cerrar Sesion</button>
+			</form>
+			</li>
 		</ul>
 	</div>
+	
 
-
-    
-    
 	<!-- Contenido de las tarjetas -->
 	<div class="content">
-
-	
 		<!-- Tarjeta 1: Administrar Estudiantes -->
 		<div class="card"
 			onclick="window.location.href='administrar_estudiantes.html';">
@@ -218,10 +228,10 @@ body::before {
 
 		<!-- Tarjeta 3: Asignar Cursos -->
 		<div class="card"
-			onclick="window.location.href='asignar_cursos.html';">
-			<img src="asignar.png" alt="Asignar Cursos">
+			onclick="window.location.href='Asignacion.jsp?usuario=<%=usuario%>';">
+			<img src="asignar.png">
 			<h2>Asignar Cursos</h2>
-			<p>Asigne cursos a los estudiantes.</p>
+			<p>Asigna tus cursos.</p>
 		</div>
 
 		<!-- Tarjeta 4: Informes y Estadísticas -->

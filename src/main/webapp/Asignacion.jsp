@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+  <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,28 +102,94 @@ body {
 }
 </style> 
 </head>
-<body>
-<h1 style="color: white;">Asignación de Cursos</h1> <!-- Cambia el color del título a blanco -->
-<h1>${existe}</h1>
-<div class="form-card">
-  <form action="Asignacion" method="get">
-    <label>Carnet Alumno</label>
-    <input name="carnet" id="carnet" type="number" required="required">
-    <br><br>
-    <label>Curso:</label>
-    <input name="curso" id="curso" required="required">
-    <br><br>
-    <label>Salon</label>
-    <input name="salon" id="salon" required="required">
-    <br><br>
+<%
+String usuario = request.getParameter("usuario");
 
-    <button type="submit" name="registro" id="registro">Registrar</button>
-    <button type="button" name="editar" id="editar">Editar</button>
+if (usuario == null) {
+
+    usuario = (String) request.getAttribute("carnet");
+}
+%>
+<body>
+<h2>${usuario}</h2>
+
+<h1 style="color: white;">Asignación de Cursos</h1> <!-- Cambia el color del título a blanco -->
+
+<div class="form-card">
+  <form action="Curso" method="get">
+    <label>Carnet Alumno</label>
+    <input name="carnet" id="carnet" type="text" value="<%=usuario%>" readonly="readonly">
+        <br><br>
+     <label>Selecciona el Semestre</label>
+    <select name="semestre" id="semestre">
+    <option value="Primer Ciclo">Primer Semestre</option>
+    <option value="Segundo Ciclo">Segundo Semestre</option>
+    <option value="Tercer Ciclo">Tercer Semestre</option>
+    <option value="Cuarto Ciclo">Cuarto Semestre</option>
+    </select>
+    <br><br>	
+        <button type="submit" name="ver" id="ver">Ver curso disponibles</button> 
   </form>
 </div>
 <br><br>
+
+<h2>${exito}</h2>
+<h2>${asignacion}</h2>
+<h2>${error}</h2>
+	<div class="form-card">
+<form action="Asignacion" method="get">
+	<%
+	Object objCurso = request.getAttribute("cursos");
+	List<String> lsCurso = null;
+
+	if (objCurso != null) {
+		if (objCurso instanceof List) {
+			lsCurso = (List<String>) objCurso;
+			%>
+			
+			<%
+		for (int i = 0; i < lsCurso.size(); i += 6) {
+		String Curso = lsCurso.get(i);
+		String id = lsCurso.get(i + 1);
+		String direccion = lsCurso.get(i + 2);
+		String nivel = lsCurso.get(i + 3);
+		String id_salon = lsCurso.get(i + 4);
+		String ciclo = lsCurso.get(i + 5);
+	%>
+	
+    <input type="checkbox" id="<%=id %>" name="cursosSeleccionados" value="<%=id%>">
+    <label for="curso"><%=Curso%></label><br>
+    <label>Salon</label> <br>
+    <label>Direccion: <%=direccion %></label> <br>
+    <label>Nivel: <%=nivel%></label>
+    <input name="salon" id="salon" value="<%=id_salon%>" hidden="true">
+    <input name="ciclo" id="ciclo" value="<%=ciclo%>" hidden="true">
+    <br><br>
+
+	<%
+	}
+	%>
+
+	<%
+	}
+	%>
+	<%
+	}else{ %>
+		<p>No hay datos </p>
+		<%}
+	%>
+	<input type="text" name="carnet" id="carnet" value="<%=usuario%>">
+    <button type="submit" name="registro" id="registro">Asignar</button>
+</form>
+</div>
 <br><br>
-<h1>${exito}</h1>
-<a href="index.jsp" style="color: white;">Regresar a la página principal</a>
+<br><br>
+
+
+
+
+
+
+<a href="Menu.jsp" style="color: white;">Regresar al menu</a>
 </body>
 </html>

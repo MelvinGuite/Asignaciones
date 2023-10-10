@@ -1,6 +1,10 @@
 package com.cursos;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import com.mysql.Connmysql;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,19 +20,29 @@ import jakarta.servlet.http.HttpServletResponse;
 public class Curso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public Curso() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String carnet = request.getParameter("carnet");
+		String ciclo = request.getParameter("semestre");
+		ArrayList<String> arrCurso = new ArrayList<String>();
+		try {
+			Connmysql conn = new Connmysql();
+			ResultSet rsCurso = conn.Cursos(carnet, ciclo);
+			while(rsCurso.next()) {
+				arrCurso.add(rsCurso.getString("nombre_curso"));
+				arrCurso.add(rsCurso.getString("id_curso"));
+				arrCurso.add(rsCurso.getString("direccion"));
+				arrCurso.add(rsCurso.getString("nivel"));
+				arrCurso.add(rsCurso.getString("id_salon"));
+				arrCurso.add((rsCurso.getString("ciclo")));
+			}
+			conn.cerrarConexion();
+			request.setAttribute("carnet", carnet);
+			request.setAttribute("cursos",arrCurso);
+			request.setAttribute("exito", "Cursos dispoibles");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("Asignacion.jsp").forward(request, response);
 	}
 
 	/**

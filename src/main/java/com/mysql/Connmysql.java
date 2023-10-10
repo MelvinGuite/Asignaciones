@@ -66,13 +66,52 @@ public class Connmysql {
 		cl.execute();
 	}
 	
-	//Verificacion 
+	//Verificacion de hash
 	public ResultSet Verificar (ArrayList<String>  arrDato) throws SQLException {
 		String consulta = "select pass from credencial WHERE carnet_alumno = ? ;";
 		PreparedStatement ps = conexion.prepareStatement(consulta);
 		ps.setString(1, arrDato.get(0));
 		return ps.executeQuery();
 	}
+	
+	//cambio de pass 
+	public void CambioPass (String carnet, String hash) throws SQLException {
+		CallableStatement cl = conexion.prepareCall(" { call CambioPass ( ?, ? ) } ");
+		cl.setString(1, carnet);
+		cl.setString(2, hash);
+		cl.execute();
+	}
+	
+	//ver cursos disponibles para asignar
+	public ResultSet Cursos (String carnet, String ciclo ) throws SQLException {
+		String consulta = ("   SELECT c.nombre AS nombre_curso, c.id AS id_curso, s.id_salon, s.direccion, s.nivel, c.ciclo  \r\n"
+				+ "FROM curso AS c\r\n"
+				+ "JOIN salon AS s ON c.id_salon = s.id_salon\r\n"
+				+ "WHERE c.ciclo = ? \r\n"
+				+ "AND (c.requisito IS NULL OR c.requisito = '' OR c.requisito IN (\r\n"
+				+ "    SELECT c2.nombre\r\n"
+				+ "    FROM curso AS c2\r\n"
+				+ "    JOIN nota AS n ON c2.id_curso = n.id_curso\r\n"
+				+ "    WHERE n.carnet_alumno = ? \r\n"
+				+ "        AND n.valor >= 61\r\n"
+				+ "));");
+		
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, ciclo);
+		ps.setString(2, carnet);
+		return ps.executeQuery();
+	}
+	
+	//Asignacion de curso 
+	public void Asignacion (String carnet, String curso, String salon, String ciclo ) throws SQLException {
+		CallableStatement cl = conexion.prepareCall(" { call Asignacion (?, ?, ?, ? ) }");
+		cl.setString(1, ciclo);
+		cl.setString(2, carnet);
+		cl.setInt(3, Integer.parseInt(curso));
+		cl.setInt(4, Integer.parseInt(salon));
+		cl.execute();
+	}
+
 }
 
 

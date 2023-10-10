@@ -2,6 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>Asignaciones</display-name>
   <welcome-file-list>
+    <!-- Lista de archivos de bienvenida (welcome files) -->
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,4 +10,13 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+
+  <!-- Configuración de página de error -->
+  <error-page>
+    <error-code>404</error-code> <!-- Código de error HTTP (ejemplo: 404 para página no encontrada) -->
+    <location>/error.jsp</location> <!-- Ruta a la página de error personalizada -->
+  </error-page>
+
+  <!-- Otras configuraciones -->
+
 </web-app>

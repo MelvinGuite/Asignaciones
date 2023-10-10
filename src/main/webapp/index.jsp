@@ -21,7 +21,8 @@
     <div class="container">
         <div class="form login">
             <h2>Login</h2>
-<div> 
+<div>
+<h2>${exito}</h2>
 <h2>${error}</h2>
 <h2>${noexiste}</h2>
 </div>

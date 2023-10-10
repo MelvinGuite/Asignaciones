@@ -135,7 +135,7 @@ h1 {
 <div class="form-card">
   <form action="" method="get">
     <label>Carnet Alumno</label>
-    <input name="carnet" id="carnet" type="number" required="required">
+    <input name="carnet" id="carnet" type="text" required="required">
     <br><br>
     <label>Tipo de Pago</label>
     <select name="tipo" id="tipo">
@@ -143,8 +143,7 @@ h1 {
       <option value="2">Certificado</option>
     </select>
     <br><br>
-    <button type="submit" name="registro" id="registro">Registrar</button>
-    <button type="button" name="editar" id="editar">Editar</button>
+    <button type="submit" name="registro" id="registro">Verificar Pago</button>
   </form>
 </div>
 <br><br>

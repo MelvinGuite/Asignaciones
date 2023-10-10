@@ -52,7 +52,10 @@ public class Login extends HttpServlet {
 			} else {
 				System.out.println("Dato no existe");
 			}
-		} catch (Exception e) {
+			conn.cerrarConexion();
+		} 
+		
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -63,9 +66,7 @@ public class Login extends HttpServlet {
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
