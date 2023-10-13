@@ -111,7 +111,66 @@ public class Connmysql {
 		cl.setInt(4, Integer.parseInt(salon));
 		cl.execute();
 	}
+	
+	// Semestre predominante
+	public ResultSet SemestrePredomina (String carnet ) throws SQLException {
+		String consulta = "SELECT carnet_alumno, semestre\r\n"
+				+ "FROM asignacion a2 \r\n"
+				+ "WHERE carnet_alumno = ? \r\n"
+				+ "GROUP BY carnet_alumno, semestre\r\n"
+				+ "HAVING COUNT(*) = (\r\n"
+				+ "    SELECT MAX(CountOfSemestre)\r\n"
+				+ "    FROM (\r\n"
+				+ "        SELECT carnet_alumno, semestre, COUNT(*) AS CountOfSemestre\r\n"
+				+ "        FROM asignacion a \r\n"
+				+ "        WHERE carnet_alumno = ? and estado = 1  \r\n"
+				+ "        GROUP BY carnet_alumno, semestre\r\n"
+				+ "    ) AS Subquery\r\n"
+				+ ")\r\n"
+				+ "ORDER BY semestre DESC\r\n"
+				+ "LIMIT 1; ";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		ps.setString(2, carnet);
+		return ps.executeQuery();
+	}
+	
+	//Costo de mensualidad
+	public ResultSet ValorMensualidad (String semestre) throws SQLException {
+		String consulta = " SELECT \r\n"
+				+ "       CASE \r\n"
+				+ "           WHEN DAY(CURDATE()) > 11 THEN (monto + 25)\r\n"
+				+ "           ELSE monto\r\n"
+				+ "       END AS monto_mora\r\n"
+				+ "  FROM pago\r\n"
+				+ "         where tipo_pago = ? and semestre = ? \r\n"
+				+ "        and id = 1;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, "Mensualidad");
+		ps.setString(2, semestre);
+		return ps.executeQuery();
+	}
+	
+	
+	// Pagos con costo fijo (certificados, carnet, inscripcion, asignacion)
+	public ResultSet PagosCostoFijo ( String tipo_pago) throws SQLException {
+		String consulta = "select monto from pago where tipo_pago = ?  and id = 1;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, tipo_pago);
+		return ps.executeQuery();
+	}
 
+	// costo total de multas 
+	public ResultSet CostoMultas (String carnet, String tipo_pago) throws SQLException {
+		String consulta = "SELECT sum(monto) as monto from solvencia s where motivo = ? and estado_pago = 1 and CARNET_ALUMNO = ? ;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, tipo_pago);
+		ps.setString(2, carnet);
+		return ps.executeQuery();
+	}
+
+	
+	
 }
 
 

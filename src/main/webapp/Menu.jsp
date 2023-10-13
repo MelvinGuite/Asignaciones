@@ -188,7 +188,7 @@ body::before {
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<!-- Menú Lateral -->
+	<!-- Menú Lateral --> tt{}
 	<div class="sidebar">
 		<img src="logo.jpg" alt="UMG">
 		<!-- Agrega una imagen como logo -->
@@ -210,11 +210,11 @@ body::before {
 	<div class="content">
 		<!-- Tarjeta 1: Administrar Estudiantes -->
 		<div class="card"
-			onclick="window.location.href='administrar_estudiantes.html';">
+			onclick="window.location.href='#';">
 			<i class="fa-solid fa-money-bill-1-wave fa-beat-fade fa-2xl"
 				style="color: #d3dbe9;"></i>
-			<h2>Pago Mensualidad</h2>
-			<p>Paga aqui tu colegiatura</p>
+			<h2>Multas</h2>
+			<p>Multas</p>
 		</div>
 
 		<!-- Tarjeta 2: Administrar Cursos -->
@@ -244,9 +244,9 @@ body::before {
 		</div>
 
 		<!-- Tarjeta 5: Configuración -->
-		<div class="card" onclick="window.location.href='configuracion.html';">
-			<i class="fa-solid fa-gear fa-shake fa-xl" style="color: #dce0ea;"></i>
-			<p>Personalice la configuración del sistema.</p>
+		<div class="card" onclick="window.location.href='Pago.jsp?usuario=<%=usuario%>';">
+			<h2>Realizar Pagos</h2>
+			<p>Realiza tus pagos aqui</p>
 		</div>
 
 		<!-- Tarjeta 6: Ayuda y Soporte -->

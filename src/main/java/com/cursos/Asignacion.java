@@ -41,6 +41,8 @@ public class Asignacion extends HttpServlet {
 
 		if(e.getSQLState().equals("45000")) {
 			request.setAttribute("error", "Alguno de los curso seleccionados ya estan asignados");
+		} else if(e.getSQLState().equals("45001")) {
+			request.setAttribute("limite", "Ya tienes 5 cursos asignados");
 		} else {
 			e.printStackTrace();
 		}

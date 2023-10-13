@@ -122,10 +122,10 @@ if (usuario == null) {
         <br><br>
      <label>Selecciona el Semestre</label>
     <select name="semestre" id="semestre">
-    <option value="Primer Ciclo">Primer Semestre</option>
-    <option value="Segundo Ciclo">Segundo Semestre</option>
-    <option value="Tercer Ciclo">Tercer Semestre</option>
-    <option value="Cuarto Ciclo">Cuarto Semestre</option>
+    <option value="Primer Semestre">Primer Semestre</option>
+    <option value="Segundo Semestre">Segundo Semestre</option>
+    <option value="Tercer Semestre">Tercer Semestre</option>
+    <option value="Cuarto Semestre">Cuarto Semestre</option>
     </select>
     <br><br>	
         <button type="submit" name="ver" id="ver">Ver curso disponibles</button> 
@@ -136,6 +136,7 @@ if (usuario == null) {
 <h2>${exito}</h2>
 <h2>${asignacion}</h2>
 <h2>${error}</h2>
+<h2>${limite}</h2>
 	<div class="form-card">
 <form action="Asignacion" method="get">
 	<%

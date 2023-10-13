@@ -129,26 +129,58 @@ h1 {
 
 </style>
 </head>
+<%
+String usuario = request.getParameter("usuario");
+
+if (usuario == null) {
+
+    usuario = (String) request.getAttribute("carnet");
+}
+
+String monto = (String) request.getAttribute("monto");
+%>
 <body>
+<h2>${usuario}</h2>
+<h2>${SINCURSO}</h2>
+<h2>${vacio}</h2>
+<h2>${total}</h2>
+
+
+<h2><%=usuario%></h2>
+
 <h1>Registro de Pago</h1>
 
 <div class="form-card">
-  <form action="" method="get">
+  <form action="PagoSemestre" method="get">
     <label>Carnet Alumno</label>
-    <input name="carnet" id="carnet" type="text" required="required">
+    <input name="carnet" id="carnet" type="text" required="required" readonly="readonly" value="<%=usuario%>">
     <br><br>
     <label>Tipo de Pago</label>
     <select name="tipo" id="tipo">
-      <option value="1">Colegiatura</option>
-      <option value="2">Certificado</option>
+      <option value="">Selecciona una opción</option>
+      <option value="Inscripcion">Inscripcion</option>
+      <option value="Asignacion">Asignacion</option>
+      <option value="Mensualidad">Colegiatura</option>
+      <option value="Certificado">Certificado</option>
+      <option value="Carne">Carné</option>   
+      <option value="Multa">Multa</option> 
     </select>
-    <br><br>
-    <button type="submit" name="registro" id="registro">Verificar Pago</button>
+
+  <label>Monto a pagar:</label>
+  <input id="monto"name="monto" value="${monto}" readonly="readonly" placeholder="Monto a pagar">
+    <button type="submit" name="verificar" id="verificar">Ver costo</button> <br> <br>
+    <button type="submit" name="pagar" id="pagar">Realizar pago</button>
+    
   </form>
+  
+
 </div>
 <br><br>
 <br><br>
-<a href="index.jsp" style="color: white">Regresar a la página principal</a>
+<a href="Menu.jsp" style="color: white">Regresar al menu</a>
+
+
+
 </body>
 </html>
 
