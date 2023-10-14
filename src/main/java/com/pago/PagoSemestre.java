@@ -130,6 +130,7 @@ public class PagoSemestre extends HttpServlet {
 			}
 		}
 		System.out.println("El tipo de pago es: " + tipo_pago);
+		request.setAttribute("tipo", tipo_pago);
 		request.setAttribute("carnet", carnet);
 		request.getRequestDispatcher("Pago.jsp").forward(request, response);
 	}

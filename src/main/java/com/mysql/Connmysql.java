@@ -169,8 +169,14 @@ public class Connmysql {
 		return ps.executeQuery();
 	}
 
-	
-	
+	public void ProcesarPago (ArrayList<String> arrDato, String semestre ) throws SQLException {
+		CallableStatement cl = conexion.prepareCall(" { call Pago (?, ?, ? , ?) } ");
+		cl.setDouble(1, Double.parseDouble(arrDato.get(0)));
+		cl.setString(2, arrDato.get(1) );
+		cl.setString(3, arrDato.get(2));
+		cl.setString(4, semestre);
+		cl.execute();
+	}
 }
 
 

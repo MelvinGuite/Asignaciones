@@ -144,7 +144,7 @@ String monto = (String) request.getAttribute("monto");
 <h2>${SINCURSO}</h2>
 <h2>${vacio}</h2>
 <h2>${total}</h2>
-
+<h2>${pago}</h2>
 
 <h2><%=usuario%></h2>
 
@@ -165,16 +165,20 @@ String monto = (String) request.getAttribute("monto");
       <option value="Carne">Carné</option>   
       <option value="Multa">Multa</option> 
     </select>
-
+        <button type="submit" name="verificar" id="verificar">Ver costo</button>
+  </form>
+  </div>
+  <br>
+  <div class="form-card">
+   <input name="carnet" id="carnet" type="text" required="required" hidden="true" value="<%=usuario%>">
   <label>Monto a pagar:</label>
   <input id="monto"name="monto" value="${monto}" readonly="readonly" placeholder="Monto a pagar">
-    <button type="submit" name="verificar" id="verificar">Ver costo</button> <br> <br>
-    <button type="submit" name="pagar" id="pagar">Realizar pago</button>
-    
-  </form>
+
+
+    <a href="Visa.jsp?usuario=<%=usuario%>&monto=${monto}&tipo=${tipo}"  target="_blank">Ir a pagar</a>   
+  </div>
   
 
-</div>
 <br><br>
 <br><br>
 <a href="Menu.jsp" style="color: white">Regresar al menu</a>
