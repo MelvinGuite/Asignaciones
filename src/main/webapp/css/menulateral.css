@@ -1,0 +1,52 @@
+/* Estilo del menú lateral */
+.sidebar {
+	width: 250px;
+	background: rgba(95, 8, 11, 0.4);
+	/* Cambia el color de fondo del menú lateral a uno con transparencia */
+	color: #fff;
+	padding: 20px;
+}
+
+/* Estilos de las tarjetas adaptados */
+.card {
+	width: calc(33.33% - 20px);
+	background: rgba(95, 8, 11, 0.4);
+	/* Cambia el color de fondo de las tarjetas a uno con transparencia */
+	color: #fff;
+	border-radius: 5px;
+	padding: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	transition: transform 0.3s, box-shadow 0.3s;
+	cursor: pointer;
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+	transform: translateY(-5px); /* Efecto de flotar */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Capa de desenfoque */
+body::before {
+	content: "";
+	background-image: url('fondo.jpg'); /* Mismo fondo que el cuerpo */
+	filter: blur(100px); /* Aplica el efecto de desenfoque */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1; /* Coloca la capa detrás del contenido */
+	opacity: 10; /* Ajusta la opacidad según tu preferencia */
+}
+
+/* Estilo del botón */
+.button-transparent {
+  background-color: transparent; /* Fondo transparente */
+  color: #ffffff; /* Color de texto */
+  border: 1px solid #ffffff; /* Borde blanco (opcional) */
+  padding: 10px 20px; /* Espaciado interno del botón */
+  cursor: pointer; /* Cambiar el cursor al pasar el ratón por encima (opcional) */
+}

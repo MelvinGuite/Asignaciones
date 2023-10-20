@@ -5,116 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/visa.css">
     <title>Página de Pago</title>
     
     <style type="text/css">
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
 
-.container {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.credit-card {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: right;
-}
-
-.card-number, .card-holder, .card-expiry {
-    font-size: 18px;
-    margin: 5px;
-}
-
-form label, form input {
-    display: block;
-    margin: 10px 0;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* ... (código anterior) ... */
-
-.credit-card {
-    background: linear-gradient(135deg, #24b2d6 0%, #0c5a78 100%);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: right;
-    position: relative;
-}
-
-.credit-card:before {
-    content: "";
-    background: url('chip.png') center no-repeat;
-    background-size: 40px;
-    width: 40px;
-    height: 40px;
-    display: block;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.credit-card:after {
-    content: "";
-    background: url('visa.jpg') center no-repeat;
-    background-size: 50px;
-    width: 50px;
-    height: 50px;
-    display: block;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-/* ... (código anterior) ... */
-
-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-input#cardExpiryInput {
-    width: 45%;
-    display: inline-block;
-}
-
-
-
-
-
-/* ... (código anterior) ... */
-
-    
     </style>
     
 </head>
 <%String usuario = request.getParameter("usuario"); 
 String monto = request.getParameter("monto");
 String tipo = request.getParameter("tipo");
+if(usuario == null ) {
+	response.sendRedirect("index.jsp");
+}
 %>
 
 <body>
@@ -126,20 +30,32 @@ String tipo = request.getParameter("tipo");
         </div>
         <form action="ProcesarPago" method="get">
             <label for="cardNumberInput">Número de Tarjeta:</label>
-            <input type="text" id="cardNumberInput" placeholder="**** **** **** ****" maxlength="19">
+            <input type="text" id="cardNumberInput" placeholder="**** **** **** ****" maxlength="19" required="required">
             <label for="cardHolderInput">Nombre del Titular:</label>
-            <input type="text" id="cardHolderInput" placeholder="Nombre del Titular">
+            <input type="text" id="cardHolderInput" placeholder="Nombre del Titular" required="required">
             <label for="cardExpiryInput">Fecha de Vencimiento:</label>
-            <input type="text" id="cardExpiryInput" placeholder="MM/AA" maxlength="5">
+            <input type="text" id="cardExpiryInput" placeholder="MM/AA" maxlength="5" required="required">
             <label for="amountInput">Monto a Pagar:</label>
-            <input type="text" id="monto" name="monto" value="<%=monto%>">
-            <input type="text" id="carnet" name="carnet" value="<%=usuario%>">
-            <input type="text" id="tipo" name="tipo" value="<%=tipo%>">
+            <input type="text" id="monto" name="monto" value="<%=monto%>" required="required" readonly="readonly">
+            <input type="text" id="carnet" name="carnet" value="<%=usuario%>" required="required" readonly="readonly">
+            <input type="text" id="tipo" name="tipo" value="<%=tipo%>" required="required" readonly="readonly">
             <div class="buttons">
                 <button id="payButton">Pagar</button>
+                  <button id="cerrarButton">Regresar</button>
             </div>
         </form>
     </div>
+        <script>
+        // Esta función se ejecutará cuando se haga clic en el botón
+        function cerrarPagina() {
+            window.close();
+        }
+
+        // Asociar la función al evento 'click' del botón
+        document.getElementById('cerrarButton').addEventListener('click', cerrarPagina);
+    </script>
+      
+    
     <script src="script.js"></script>
     
       <script type="text/javascript">

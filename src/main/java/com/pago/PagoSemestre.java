@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 
 import com.mysql.Connmysql;
-import com.oracle.wls.shaded.org.apache.bcel.generic.Select;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

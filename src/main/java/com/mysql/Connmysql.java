@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.oracle.wls.shaded.org.apache.regexp.recompile;
-
 public class Connmysql {
 	private String url = "jdbc:mysql://database-1.clrghkrtdl1q.us-east-2.rds.amazonaws.com:3306/ProyectoQA";
 	private String usuario = "admin";
@@ -169,6 +167,7 @@ public class Connmysql {
 		return ps.executeQuery();
 	}
 
+	//Recibir pago
 	public void ProcesarPago (ArrayList<String> arrDato, String semestre ) throws SQLException {
 		CallableStatement cl = conexion.prepareCall(" { call Pago (?, ?, ? , ?) } ");
 		cl.setDouble(1, Double.parseDouble(arrDato.get(0)));
@@ -176,6 +175,27 @@ public class Connmysql {
 		cl.setString(3, arrDato.get(2));
 		cl.setString(4, semestre);
 		cl.execute();
+	}
+	
+	// Ver cusos activos
+	
+	public ResultSet CursoActivo (String carnet ) throws SQLException {
+		String consulta = "      SELECT \r\n"
+				+ "      a.semestre,\r\n"
+				+ "      s.direccion, \r\n"
+				+ "      c.id_curso, c.nombre as curso,\r\n"
+				+ "      cat.nombre, cat. apellido, cat.titulo,\r\n"
+				+ "      n.valor \r\n"
+				+ "      from \r\n"
+				+ "      asignacion a \r\n"
+				+ "      left join salon s on a.id_salon = s.id_salon \r\n"
+				+ "      left join curso c on a.id_curso = c.id_curso \r\n"
+				+ "      inner join catedratico cat on c.carnet_catedratico  = cat.carnet_catedratico\r\n"
+				+ "      LEFT  JOIN  nota n on n.id_nota = a.id_nota \r\n"
+				+ "      where a.estado = 1 and a.carnet_alumno = ? ;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		return ps.executeQuery();
 	}
 }
 

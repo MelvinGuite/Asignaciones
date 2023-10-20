@@ -8,162 +8,12 @@
 <title>Sistema de Administración de Cursos</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<style>
-/* Estilos generales */
-body {
-	font-family: 'Roboto', sans-serif;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	position: relative;
-	/* Necesario para el posicionamiento absoluto de ::before */
-	background-color: #f5f5f5; /* Fondo suave */
-	background-image: url('fondo.jpg'); /* URL de la imagen de fondo */
-	background-size: cover;
-	/* Ajustar la imagen de fondo para cubrir todo el elemento body */
-	background-position: center; /* Centrar la imagen de fondo */
-	background-repeat: no-repeat;
-	/* Evitar la repetición de la imagen de fondo */
-}
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/menulateral.css">
 
-/* Estilo del menú lateral */
-.sidebar {
-	width: 250px;
-	background-color: #333;
-	color: #fff;
-	padding: 20px;
-}
-
-.sidebar ul {
-	list-style: none;
-	padding: 0;
-}
-
-.sidebar li {
-	margin-bottom: 15px;
-	display: flex;
-	align-items: center;
-}
-
-.sidebar a {
-	text-decoration: none;
-	color: #fff;
-	font-weight: bold;
-	transition: color 0.3s;
-}
-
-.sidebar a:hover {
-	color: #00bcd4;
-}
-
-.sidebar img {
-	margin-right: 10px;
-	width: 24px;
-	height: 24px;
-}
-
-/* Estilos de las tarjetas */
-.content {
-	flex: 1;
-	padding: 20px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-
-/* Estilos de las tarjetas adaptados */
-.card {
-	width: calc(33.33% - 20px);
-	background: linear-gradient(to bottom right, #00bcd4, #007c91);
-	/* Gradiente suave */
-	color: #007c91; /* Letras negras */
-	border-radius: 5px;
-	padding: 20px;
-	margin-bottom: 20px;
-	text-align: center;
-	transition: transform 0.3s, box-shadow 0.3s;
-	cursor: pointer;
-	transform: translateY(0);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card:hover {
-	transform: translateY(-5px); /* Efecto de flotar */
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card h2 {
-	font-size: 18px;
-	margin-top: 10px;
-}
-
-/* Imágenes de las tarjetas */
-.card img {
-	width: 80px;
-	height: 80px;
-	margin-bottom: 10px;
-}
-
-.sidebar img {
-	width: 250px; /* Ajusta el ancho de la imagen */
-	height: auto; /* Autoajusta la altura para mantener la proporción */
-}
-</style>
 <!-- Estilos de las tarjetas adaptados -->
 <!-- Estilos generales -->
 <style>
-/* Estilo del menú lateral */
-.sidebar {
-	width: 250px;
-	background: rgba(95, 8, 11, 0.4);
-	/* Cambia el color de fondo del menú lateral a uno con transparencia */
-	color: #fff;
-	padding: 20px;
-}
-
-/* Estilos de las tarjetas adaptados */
-.card {
-	width: calc(33.33% - 20px);
-	background: rgba(95, 8, 11, 0.4);
-	/* Cambia el color de fondo de las tarjetas a uno con transparencia */
-	color: #fff;
-	border-radius: 5px;
-	padding: 20px;
-	margin-bottom: 20px;
-	text-align: center;
-	transition: transform 0.3s, box-shadow 0.3s;
-	cursor: pointer;
-	transform: translateY(0);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card:hover {
-	transform: translateY(-5px); /* Efecto de flotar */
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Capa de desenfoque */
-body::before {
-	content: "";
-	background-image: url('fondo.jpg'); /* Mismo fondo que el cuerpo */
-	filter: blur(100px); /* Aplica el efecto de desenfoque */
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1; /* Coloca la capa detrás del contenido */
-	opacity: 10; /* Ajusta la opacidad según tu preferencia */
-}
-
-/* Estilo del botón */
-.button-transparent {
-  background-color: transparent; /* Fondo transparente */
-  color: #ffffff; /* Color de texto */
-  border: 1px solid #ffffff; /* Borde blanco (opcional) */
-  padding: 10px 20px; /* Espaciado interno del botón */
-  cursor: pointer; /* Cambiar el cursor al pasar el ratón por encima (opcional) */
-}
 
 </style>
 
@@ -188,7 +38,7 @@ body::before {
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<!-- Menú Lateral --> tt{}
+	<!-- Menú Lateral --> 
 	<div class="sidebar">
 		<img src="logo.jpg" alt="UMG">
 		<!-- Agrega una imagen como logo -->
@@ -219,7 +69,7 @@ body::before {
 
 		<!-- Tarjeta 2: Administrar Cursos -->
 		<div class="card"
-			onclick="window.location.href='administrar_cursos.html';">
+			onclick="window.location.href='MisCursos.jsp?usuario=<%=usuario%>';">
 			<i class="fa-regular fa-address-book fa-beat fa-2xl"
 				style="color: #d8dce4;"></i>
 			<h2>Administrar Cursos</h2>
