@@ -92,7 +92,7 @@
 		</div>
 
 		<!-- Tarjeta 6: Ayuda y Soporte -->
-		<div class="card" onclick="window.location.href='ayuda_soporte.html';">
+		<div class="card" onclick="window.location.href='Ayuda.jsp?usuario=<%=usuario%>';">
 			
 			<h2>Ayuda y Soporte</h2>
 			<p>Obtenga ayuda y soporte técnico.</p>

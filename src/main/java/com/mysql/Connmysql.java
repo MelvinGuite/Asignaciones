@@ -287,6 +287,13 @@ public class Connmysql {
 		cl.setString(4, arrdato.get(3));
 		cl.execute();
 	}
+	
+	public ResultSet ObtenerCorreo (String carnet ) throws SQLException {
+		String consulta = "SELECT email , nombre, apellido from alumno where carnet_alumno = ? ;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		return ps.executeQuery();
+	}
 }
 
 
