@@ -106,7 +106,7 @@
         
         <h3>Mis Opciones</h3>
         <ul class="nav-links">
-            <li><a href="#">Mis Cursos</a></li>
+            <li><a href="MisCursos.jsp?usuario=<%=usuario%>">Mis Cursos</a></li>
             <li><a href="#">Mis Notas</a></li>
             <li><a href="#">Subir Foto de Perfil</a></li>
         </ul>

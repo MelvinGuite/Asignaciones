@@ -14,7 +14,7 @@
 	margin: 0;
 	padding: 0;
 	display: flex;
-	position: relative;
+	position: absolute;
 	/* Necesario para el posicionamiento absoluto de ::before */
 	background-color: #f5f5f5; /* Fondo suave */
 	background-image: url('fondo.jpg'); /* URL de la imagen de fondo */
@@ -80,23 +80,25 @@
 String usuario = request.getParameter("usuario");
 
 if (usuario == null) {
+	usuario = (String) request.getParameter("carnet");
+	if(usuario == null) {
+		response.sendRedirect("Menu.jsp");
+	}
+}
 
     usuario = (String) request.getAttribute("carnet");
     if(usuario == null ) {
     	response.sendRedirect("index.jsp");
     }
-}
 %>
 </head>
 <body>
     <div class="sidebar">
         <h2><%=usuario%></h2>
-        <a href="#">Inicio</a>
-        <a href="#" onclick="filterBySemester('Semestre 1')">Semestre 1</a>
-        <a href="#" onclick="filterBySemester('Semestre 2')">Semestre 2</a>
+        <a href="Menu.jsp">Inicio</a>
   <form action="AdministraCurso">
 <input name="usuario" id="usuario" value="<%=usuario%>" hidden="">
-<button type="submit">Cursos Acivos</button>
+<button type="submit" class="leave-button">Cursos Acivos</button>
 </form>
     </div>
 
@@ -127,7 +129,6 @@ if(objCurso != null ) {
             <p>Catedratico: <%=nombre + " " + apellido + " (" + profresion + ")"%></p>
             <p><%=semestre%></p>
             <p class="course-rating">Calificación: <%=valor %></p>
-<button class="leave-button" onclick="dejarcurso('<%=id_curso%>')">Dejar Curso</button>
         </div>
 
     </div>

@@ -150,7 +150,7 @@ public class Connmysql {
 	}
 	
 	
-	// Pagos con costo fijo (certificados, carnet, inscripcion, asignacion)
+	// valor de  Pagos con costo fijo (certificados, carnet, inscripcion, asignacion)
 	public ResultSet PagosCostoFijo ( String tipo_pago) throws SQLException {
 		String consulta = "select monto from pago where tipo_pago = ?  and id = 1;";
 		PreparedStatement ps = conexion.prepareStatement(consulta);
@@ -193,6 +193,80 @@ public class Connmysql {
 				+ "      inner join catedratico cat on c.carnet_catedratico  = cat.carnet_catedratico\r\n"
 				+ "      LEFT  JOIN  nota n on n.id_nota = a.id_nota \r\n"
 				+ "      where a.estado = 1 and a.carnet_alumno = ? ;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		return ps.executeQuery();
+	}
+	
+	//Verificar Solvencia
+	public ResultSet VerSolvencia (String carnet, String semestrepre ) throws SQLException {
+		String consulta = "SELECT\r\n"
+				+ "       MONTH(CURDATE()) / 2 -1 AS mes_actual , \r\n"
+				+ "       COUNT(*) AS pagos_realizados\r\n"
+				+ "  FROM pago\r\n"
+				+ " WHERE YEAR(fecha) = YEAR(CURDATE())\r\n"
+				+ "   AND carnet_alumno = ?  \r\n"
+				+ "   AND MONTH(fecha) <= MONTH(CURDATE())\r\n"
+				+ "    AND semestre = ? \r\n"
+				+ "   AND estado = 0;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		ps.setString(2, semestrepre);
+		return ps.executeQuery();
+	}
+	
+	//Historial mensualidad
+	public ResultSet Historial (String carnet) throws SQLException {
+		String consulta = "SELECT fecha, tipo_pago, monto from pago where carnet_alumno = ? and estado = 0;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		return ps.executeQuery();
+	}
+	
+	//Pago de multas
+	public void PagoMultas (String carnet, String monto) throws SQLException {
+		CallableStatement cl = conexion.prepareCall(" { call PagoMulta (?, ? ) }");
+		cl.setString(1, carnet);
+		cl.setDouble(2, Double.parseDouble(monto));
+		cl.execute();
+	}
+	
+	//pagos fijos
+	public void PagoVarios(String usuario, String monto, String tipo) throws SQLException {
+		CallableStatement cl = conexion.prepareCall(" { call PagoFijos (?, ?, ? ) } ");
+		cl.setString(1, usuario);
+		cl.setDouble(2, Double.parseDouble(monto));
+		cl.setString(3, tipo);
+		cl.execute();
+	}
+	
+	//Verificar pago de inscripcion
+	public ResultSet VerificaInscripcion (String carnet )  throws SQLException {
+		String consulta = "SELECT COUNT(*) as cantidad\r\n"
+				+ "FROM pago p  \r\n"
+				+ "WHERE carnet_alumno = ? and tipo_pago = 'Inscripcion'\r\n"
+				+ "      AND YEAR(fecha) = YEAR(CURRENT_DATE) \r\n"
+				+ "      AND (\r\n"
+				+ "            (MONTH(fecha) BETWEEN 1 AND 6 AND MONTH(CURRENT_DATE) BETWEEN 1 AND 6)\r\n"
+				+ "            OR \r\n"
+				+ "            (MONTH(fecha) BETWEEN 7 AND 12 AND MONTH(CURRENT_DATE) BETWEEN 7 AND 12)\r\n"
+				+ "      );";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		return ps.executeQuery();
+	}
+	
+	//verificar pago de asignacion
+	public ResultSet VerificaAsignacion (String carnet) throws SQLException {
+		String consulta = "SELECT COUNT(*) as cantidad\r\n"
+				+ "FROM pago p  \r\n"
+				+ "WHERE carnet_alumno = ? and tipo_pago = 'Asignacion'\r\n"
+				+ "      AND YEAR(fecha) = YEAR(CURRENT_DATE) \r\n"
+				+ "      AND (\r\n"
+				+ "            (MONTH(fecha) BETWEEN 1 AND 6 AND MONTH(CURRENT_DATE) BETWEEN 1 AND 6)\r\n"
+				+ "            OR \r\n"
+				+ "            (MONTH(fecha) BETWEEN 7 AND 12 AND MONTH(CURRENT_DATE) BETWEEN 7 AND 12)\r\n"
+				+ "      );";
 		PreparedStatement ps = conexion.prepareStatement(consulta);
 		ps.setString(1, carnet);
 		return ps.executeQuery();

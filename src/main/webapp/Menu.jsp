@@ -60,11 +60,11 @@
 	<div class="content">
 		<!-- Tarjeta 1: Administrar Estudiantes -->
 		<div class="card"
-			onclick="window.location.href='#';">
+			onclick="window.location.href='Multas.jsp?usuario=<%=usuario%>';">
 			<i class="fa-solid fa-money-bill-1-wave fa-beat-fade fa-2xl"
 				style="color: #d3dbe9;"></i>
-			<h2>Multas</h2>
-			<p>Multas</p>
+			<h2>Solvencia</h2>
+			<p>Verifica si estas solvente</p>
 		</div>
 
 		<!-- Tarjeta 2: Administrar Cursos -->
@@ -84,7 +84,7 @@
 			<p>Asigna tus cursos.</p>
 		</div>
 
-		<!-- Tarjeta 4: Informes y Estadísticas -->
+		
 		<div class="card"
 			onclick="window.location.href='informes_estadisticas.html';">
 			<i class="fa-solid fa-face-frown fa-bounce fa-2xl"

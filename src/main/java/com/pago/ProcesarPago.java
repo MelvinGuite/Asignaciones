@@ -44,6 +44,34 @@ public class ProcesarPago extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		if(arrPago.get(2).equals("Multa")) {
+			try {
+				Connmysql conn = new Connmysql();
+				conn.PagoMultas(arrPago.get(1), arrPago.get(0));  //carner,  monto
+				conn.cerrarConexion();
+				request.setAttribute("pago" ,"Su pago fue recibido con exito");
+				String cerrarVenta = "<script>window.close();</script>";
+				response.getWriter().write(cerrarVenta);
+			}catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("pago" ,"Su pago no ha podido ser procesado");
+			}
+		}
+		
+		if (arrPago.get(2).equals("Asignacion") || arrPago.get(2).equals("Certificado") || arrPago.get(2).equals("Carne") || arrPago.get(2).equals("Inscripcion")) {
+			try {
+				Connmysql conn = new Connmysql();
+				conn.PagoVarios(arrPago.get(1), arrPago.get(0), arrPago.get(2));
+				conn.cerrarConexion();
+				request.setAttribute("pago" ,"Su pago fue recibido con exito");
+				String cerrarVenta = "<script>window.close();</script>";
+				response.getWriter().write(cerrarVenta);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		request.setAttribute("carnet", arrPago.get(1));
 		request.getRequestDispatcher("Pago.jsp").forward(request, response);
 	}
