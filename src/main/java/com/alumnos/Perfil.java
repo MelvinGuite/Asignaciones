@@ -47,10 +47,13 @@ public class Perfil extends HttpServlet {
 		
 		if(request.getParameter("editar") != null ) {
 			ArrayList<String> arrDatos = new ArrayList<String>();
+			String foto = (request.getParameter("foto").replace("/view", "/preview"));
+
 			arrDatos.add(request.getParameter("alumno"));
 			arrDatos.add(request.getParameter("telefono"));
 			arrDatos.add(request.getParameter("correo"));
-			arrDatos.add(request.getParameter("foto"));
+			arrDatos.add(foto);
+			
 			try {
 				Connmysql conn = new Connmysql();
 				conn.ActualizaPerfil(arrDatos);

@@ -137,15 +137,14 @@
     	if( usuario == null)  {
     		response.sendRedirect("index.jsp"); 
     	}
-    	
     }
     %>
-</head>
-<body>
+<body onload="actualizarIframeSrc(document.getElementById('foto').value)">
+
     <!-- Contenido de la página de perfil -->
     <div class="profile-container">
         <div class="profile-picture">
-            <iframe src="https://drive.google.com/file/d/1WHZYsJHjDbQe37fr_TdPvUsb2bjNo_QH/preview"></iframe>
+<iframe id="imagenFrame" width="300" height="300"></iframe>
         </div>
         <h2>${exito}</h2>
         <h2>Carnet: <%=usuario %></h2>
@@ -181,7 +180,7 @@ if(objPerfil != null ) {
             <th>Teléfono</th>
             <th>Créditos</th>
             <th>Email</th>
-            <th>Foto</th>
+            <th>URL DE Foto</th>
         </tr>
 		<%
 		for(int i=0; i<lsPerfil.size(); i += 8) {
@@ -194,11 +193,12 @@ if(objPerfil != null ) {
 			String correo = lsPerfil.get(i + 6);
 			String foto = lsPerfil.get(i + 7);
 			if(foto == null) {
-				foto = "Sin foto";
+				foto = "";
 			}
 			%>
 
 			<tr>
+			
 		<td><input id="alumno" name="alumno" value="<%= carnet %>" readonly="readonly"></td>
         <td><input id="identificacion" name="identificacion" value="<%= identificacion %>" readonly="readonly"></td>
         <td><input id="nombre" name="nombre" value="<%= nombre %>" readonly="readonly"></td>
@@ -206,12 +206,31 @@ if(objPerfil != null ) {
         <td><input id="telefono" name="telefono" value="<%= telefono %>"></td>
         <td><input id="creditos" name="creditos" value="<%= creditos %>" readonly="readonly"></td>
         <td><input id="correo" name="correo" value="<%= correo %>"></td>
-        <td><input id="foto" name="foto" value="<%= foto %>"></td>
+        <td><input id="foto" name="foto" type="text" value="<%= foto %>" oninput="actualizarIframeSrc(this.value)"></td>
 			</tr>
 			<%	}%>
 <%	}%>
     </table>
     </div>
+    <input id="carnet" name="carnet" value="<%=usuario%>" hidden="">
+    <h2>Mi Imagen en Google Drive</h2>
+    <p>Si deseas cambiar tu foto, introduce la url de drive en el campo foto</p>
+
+    <script>
+        function actualizarIframeSrc(url) {
+            // Verifica si el campo 'foto' no está vacío
+            if (url.trim() !== "") {
+                // Reemplaza "view" por "preview" en la URL
+                url = url.replace("/view", "/preview");
+
+                // Obtén una referencia al elemento iframe
+                var iframe = document.getElementById("imagenFrame");
+
+                // Actualiza el atributo src del iframe con la nueva URL modificada
+                iframe.src = url;
+            }
+        }
+    </script>
     <button type="submit" name="editar" id="editar" class="change-password-button">Guardar cambios</button>
     </form>
 <%}%>
