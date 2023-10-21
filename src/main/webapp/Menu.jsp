@@ -45,8 +45,6 @@
 		<ul>
 		<li><%=usuario %> </li>
 <li><a href="MiPerfil.jsp?usuario=<%=usuario%>"> <i class="fa-solid fa-user fa-beat fa-xl" style="color: #a6b7d3;"></i> Mi perfil</a></li>
-
-			
 			<li>
 			<form action="Logout" method="post">
 			<button type="submit" class="button-transparent" > <i class="fa-solid fa-right-to-bracket fa-2xl" style="color: #fafcff;"></i>    Cerrar Sesion</button>
@@ -59,6 +57,7 @@
 	<!-- Contenido de las tarjetas -->
 	<div class="content">
 		<!-- Tarjeta 1: Administrar Estudiantes -->
+		
 		<div class="card"
 			onclick="window.location.href='Multas.jsp?usuario=<%=usuario%>';">
 			<i class="fa-solid fa-money-bill-1-wave fa-beat-fade fa-2xl"

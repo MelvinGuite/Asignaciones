@@ -135,7 +135,7 @@ body {
     <br><br>
 
     <button type="submit" name="registro" id="registro">Registrar</button>
-    <button type="button" name="editar" id="editar">Editar</button>
+
   </form>
 </div>
 <br><br>

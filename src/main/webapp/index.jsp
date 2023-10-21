@@ -41,6 +41,8 @@
                 <button class="btn">Login</button>
                 
             </form>
+                <a href="Alumno.jsp"><button class="btn">Solicitar Mi Cuenta</button></a>
+            
         </div>
     </div>
 </body>

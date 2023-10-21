@@ -6,102 +6,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Administración de Cursos</title>
-    
-    <style>
-        /* Estilos generales */
-       body {
-	font-family: 'Roboto', sans-serif;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	position: absolute;
-	/* Necesario para el posicionamiento absoluto de ::before */
-	background-color: #f5f5f5; /* Fondo suave */
-	background-image: url('fondo.jpg'); /* URL de la imagen de fondo */
-	background-size: cover;
-	/* Ajustar la imagen de fondo para cubrir todo el elemento body */
-	background-position: center; /* Centrar la imagen de fondo */
-	background-repeat: no-repeat;
-	/* Evitar la repetición de la imagen de fondo */
-}
-
-        /* Estilo del menú lateral */
-        .sidebar {
-            width: 250px;
-            background: rgba(51, 51, 51, 0.7);
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .sidebar a {
-            text-decoration: none;
-            color: #fff;
-            margin: 10px 0;
-        }
-
-        /* Contenedor de las tarjetas */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-
-        /* Estilos de las tarjetas con efecto transparente */
-        .card {
-            width: 300px;
-            background: rgba(255, 255, 255, 0.9); /* Fondo transparente */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        /* Estilo del botón de "Dejar Curso" */
-        .leave-button {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-        }
-
-        /* Estilo para mostrar la calificación */
-        .course-rating {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/menulateral.css">
     
  <%
 String usuario = request.getParameter("usuario");
 
 if (usuario == null) {
-	usuario = (String) request.getParameter("carnet");
-	if(usuario == null) {
-		response.sendRedirect("Menu.jsp");
-	}
-}
 
     usuario = (String) request.getAttribute("carnet");
-    if(usuario == null ) {
-    	response.sendRedirect("index.jsp");
-    }
+
+}
 %>
 </head>
 <body>
-    <div class="sidebar">
+   <div class="sidebar">
+   
         <h2><%=usuario%></h2>
-        <a href="Menu.jsp">Inicio</a>
+        <a href="Menu.jsp">Menu</a>
   <form action="AdministraCurso">
 <input name="usuario" id="usuario" value="<%=usuario%>" hidden="">
 <button type="submit" class="leave-button">Cursos Acivos</button>
 </form>
-    </div>
-
+   </div>
+<div class="content">
 <%
 Object objCurso = request.getAttribute("cursos");
 List<String> lsCurso = null;
@@ -123,15 +51,17 @@ if(objCurso != null ) {
 			}
 			%>
 			
-		    <div class="card-container">
+		    
         <div class="card">
             <h2><%=curso%></h2>
             <p>Catedratico: <%=nombre + " " + apellido + " (" + profresion + ")"%></p>
             <p><%=semestre%></p>
             <p class="course-rating">Calificación: <%=valor %></p>
         </div>
+        
+        
 
-    </div>
+   
 			
 			
 			
@@ -141,7 +71,7 @@ if(objCurso != null ) {
 
 
 
-
+ </div>
 
     <script>
         function dejarcurso(curso) {
