@@ -107,11 +107,9 @@
         <h3>Mis Opciones</h3>
         <ul class="nav-links">
             <li><a href="MisCursos.jsp?usuario=<%=usuario%>">Mis Cursos</a></li>
-            <li><a href="#">Mis Notas</a></li>
-            <li><a href="#">Subir Foto de Perfil</a></li>
+            <li><a href="#">Ver mis datos</a></li>
         </ul>
     </div>
-    
     
 </body>
 </html>

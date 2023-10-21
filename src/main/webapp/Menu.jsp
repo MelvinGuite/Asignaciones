@@ -78,7 +78,7 @@
 		<!-- Tarjeta 3: Asignar Cursos -->
 		<div class="card"
 			onclick="window.location.href='Asignacion.jsp?usuario=<%=usuario%>';">
-			<img src="asignar.png">
+			
 			<h2>Asignar Cursos</h2>
 			<p>Asigna tus cursos.</p>
 		</div>
@@ -100,7 +100,7 @@
 
 		<!-- Tarjeta 6: Ayuda y Soporte -->
 		<div class="card" onclick="window.location.href='ayuda_soporte.html';">
-			<img src="ayuda.png" alt="Ayuda y Soporte">
+			
 			<h2>Ayuda y Soporte</h2>
 			<p>Obtenga ayuda y soporte técnico.</p>
 		</div>
