@@ -271,10 +271,23 @@ public class Connmysql {
 		ps.setString(1, carnet);
 		return ps.executeQuery();
 	}
+	
+	public ResultSet Perfil (String carnet) throws SQLException {
+		String consulta = "SELECT * FROM alumno WHERE carnet_alumno = ? ;";
+		PreparedStatement ps = conexion.prepareStatement(consulta);
+		ps.setString(1, carnet);
+		return ps.executeQuery();
+	}
+	
+	public void ActualizaPerfil (ArrayList<String> arrdato) throws SQLException {
+		CallableStatement cl = conexion.prepareCall(" { call ActualizarAlumno ( ?, ?, ?, ? ) }");
+		cl.setString(1, arrdato.get(0));
+		cl.setInt(2, Integer.parseInt(arrdato.get(1)));
+		cl.setString(3, arrdato.get(2));
+		cl.setString(4, arrdato.get(3));
+		cl.execute();
+	}
 }
-
-
-
 
 
 

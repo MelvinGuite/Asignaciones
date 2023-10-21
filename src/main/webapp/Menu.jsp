@@ -84,13 +84,6 @@
 		</div>
 
 		
-		<div class="card"
-			onclick="window.location.href='informes_estadisticas.html';">
-			<i class="fa-solid fa-face-frown fa-bounce fa-2xl"
-				style="color: #aec0e0;"></i>
-			<h2>Ver notas</h2>
-			<p>Puedes ver tus notas y Pensum</p>
-		</div>
 
 		<!-- Tarjeta 5: Configuración -->
 		<div class="card" onclick="window.location.href='Pago.jsp?usuario=<%=usuario%>';">
